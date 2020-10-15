@@ -52,3 +52,9 @@ cd orig && npm install && npm start
 (Wait for at most 30 seconds...)
 $ curl localhost:8080
 ```
+
+## Learnings
+
+I have used RabbitMQ twice before. First time I used message breaker in my first software job. The case was error reporting, when the application crashed, the RabbitMQ sent the errors to the log. The second time was in school at Web Architectures course. There I realized the first time, how message breakers actually works. I am amazed, how functional and well implemented the protocol really is. I figured out that RabbitMQ is much faster and more reliable in many cases than just plain HTTP. I have been doing Web sockets in many projects, i found a lot similarity in AMQP protocol with Websockets.
+
+After this job, I have deepen my learnings especially with using Docker and Docker-compose. Working with RabbitMQ gave me good new tips to the future!
