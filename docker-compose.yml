@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  orig:
+    image: patriktorn/orig:3a
+    command: ["npm", "start"]
+    build:
+      dockerfile: Dockerfile
+      context:  ./orig
+    ports:
+      - "80:80"
+
+  imed:
+      image: patriktorn/imed:3b
+
+      # depends_on:
+      # working_dir: /user/src/app
+      command: ["npm", "start"]
+      build: 
+        dockerfile: Dockerfile
+        context: ./imed
+
+    httpserv:
+      image: patriktorn/httpserv:3b
+
+      # depends_on:
+      # working_dir: /user/src/app
+      command: ["npm", "start"]
+      build: 
+        dockerfile: Dockerfile
+        context: ./httpserv
