@@ -13,10 +13,7 @@ amqp.connect(conString, function (error0, connection) {
       durable: false,
     });
 
-    console.log(
-      " [*] Waiting for messages in %s. To exit press CTRL+C",
-      ORIG_TOPIC
-    );
+    console.log(" [*] Waiting for messages in topic %s.", ORIG_TOPIC);
     channel.consume(
       ORIG_TOPIC,
       function (msg) {

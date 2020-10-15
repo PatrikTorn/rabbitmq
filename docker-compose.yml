@@ -6,11 +6,6 @@ services:
     # This variant is built on Alpine Linux (it's smaller) and includes
     # the management UI.
     image: 'rabbitmq:3.6-management-alpine'
-
-    # These ports are exposed on the host; 'hostport:containerport'.
-    # You could connect to this server from outside with the *host's*
-    # DNS name or IP address and port 5672 (the left-hand side of the
-    # colon).
     expose:
       - 5672
       - 15672
@@ -43,7 +38,6 @@ services:
   imed:
     image: patriktorn/imed:3b
     restart: on-failure
-    # depends_on:
     command: bash -c "npm install && node index.js"
     build: 
       dockerfile: Dockerfile
@@ -62,8 +56,6 @@ services:
     image: patriktorn/httpserv:3b
     restart: on-failure
     command: bash -c "npm install && node index.js"
-    # depends_on:
-    # working_dir: /user/src/app
     build: 
       dockerfile: Dockerfile
       context: ./httpserv

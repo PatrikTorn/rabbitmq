@@ -7,6 +7,4 @@ ADD package.json package-lock.json /usr/src/orig/
 RUN npm run --verbose
 ADD . /usr/src/orig/
 
-# EXPOSE 80
-
 CMD [ "npm", "start" ]

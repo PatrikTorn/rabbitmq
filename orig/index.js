@@ -15,7 +15,7 @@ amqp.connect(conString, function (error0, connection) {
       channel.sendToQueue(TOPIC, Buffer.from("MSG_1"));
       channel.sendToQueue(TOPIC, Buffer.from("MSG_2"));
       channel.sendToQueue(TOPIC, Buffer.from("MSG_3"));
-      console.log(" [x] ORIG Sent 3 messages");
+      console.log("[x] ORIG Sent 3 messages");
     }, SENDING_INTERVAL_MS);
   });
 });
