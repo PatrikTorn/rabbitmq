@@ -1,11 +1,11 @@
 FROM node:10
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/src/orig
+WORKDIR /usr/src/orig
 
-ADD package.json package-lock.json /usr/src/app/
-RUN yarn --verbose
-ADD . /usr/src/app/
+ADD package.json package-lock.json /usr/src/orig/
+RUN npm run --verbose
+ADD . /usr/src/orig/
 
 # EXPOSE 80
 
