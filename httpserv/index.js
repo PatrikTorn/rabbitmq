@@ -3,6 +3,10 @@ const fs = require("fs");
 const amqp = require("amqplib/callback_api");
 const PORT = 8080;
 const conString = "amqp://guest:guest@rabbitmq:5672";
+
+// Reset the file content to empty
+fs.writeFileSync("./file.txt", "");
+
 amqp.connect(conString, function (error0, connection) {
   if (error0) {
     throw error0;

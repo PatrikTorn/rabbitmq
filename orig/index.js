@@ -11,11 +11,14 @@ amqp.connect(conString, function (error0, connection) {
     channel.assertQueue(TOPIC, {
       durable: false,
     });
+    let i = 1;
     setInterval(() => {
-      channel.sendToQueue(TOPIC, Buffer.from("MSG_1"));
-      channel.sendToQueue(TOPIC, Buffer.from("MSG_2"));
-      channel.sendToQueue(TOPIC, Buffer.from("MSG_3"));
-      console.log("[x] ORIG Sent 3 messages");
+      if (i > 3) {
+        i = 1;
+      }
+      channel.sendToQueue(TOPIC, Buffer.from(`MSG_${i}`));
+      console.log(`[x] ORIG Sent MSG_${i}`);
+      i++;
     }, SENDING_INTERVAL_MS);
   });
 });
