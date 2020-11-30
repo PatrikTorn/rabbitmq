@@ -1,0 +1,29 @@
+{
+  "name": "rabbitmq",
+  "version": "1.0.0",
+  "description": "Application is created with node.js using RabbitMQ's amqp message breaker -library. The application consists of four different services: HTTPSERV, ORSERVER, INTERMED and ORIG. HTTPSERV and OBSERER are located in same folder.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha --timeout 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PatrikTorn/rabbitmq.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PatrikTorn/rabbitmq/issues"
+  },
+  "homepage": "https://github.com/PatrikTorn/rabbitmq#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "supertest": "^6.0.1"
+  }
+}
