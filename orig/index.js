@@ -2,7 +2,7 @@ const amqp = require("amqplib/callback_api");
 const SENDING_INTERVAL_MS = 3000;
 const TOPIC = "my.o";
 const STATE_TOPIC = "my.s";
-const conString = "amqp://localhost" || "amqp://guest:guest@rabbitmq:5672";
+const conString = "amqp://guest:guest@rabbitmq:5672";
 
 let running = true;
 

@@ -2,7 +2,7 @@ const app = require("express")();
 const fs = require("fs");
 const amqp = require("amqplib/callback_api");
 const PORT = 8080;
-const conString = "amqp://localhost" || "amqp://guest:guest@rabbitmq:5672";
+const conString = "amqp://guest:guest@rabbitmq:5672";
 const MESSAGES_FILE = "./messages.txt";
 const FILE = "./file.txt";
 // Reset the file content to empty
