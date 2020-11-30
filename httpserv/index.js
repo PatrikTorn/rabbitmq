@@ -2,10 +2,19 @@ const app = require("express")();
 const fs = require("fs");
 const amqp = require("amqplib/callback_api");
 const PORT = 8080;
-const conString = "amqp://guest:guest@rabbitmq:5672";
-
+const conString = "amqp://localhost" || "amqp://guest:guest@rabbitmq:5672";
+const MESSAGES_FILE = "./messages.txt";
+const FILE = "./file.txt";
 // Reset the file content to empty
-fs.writeFileSync("./file.txt", "");
+fs.writeFileSync(FILE, "");
+fs.writeFileSync(MESSAGES_FILE, "");
+
+function readFile(fileName) {
+  return fs.readFileSync(fileName, {
+    encoding: "utf-8",
+    flag: "r",
+  });
+}
 
 amqp.connect(conString, function (error0, connection) {
   if (error0) {
@@ -33,7 +42,9 @@ amqp.connect(conString, function (error0, connection) {
             topic +
             ": " +
             msg.content.toString();
-          fs.writeFileSync("./file.txt", string);
+          fs.writeFileSync(FILE, string);
+          const newMessages = readFile(MESSAGES_FILE) + "\n" + string;
+          fs.writeFileSync(MESSAGES_FILE, newMessages);
           console.log(
             " [x] Received %s from %s",
             msg.content.toString(),
@@ -55,15 +66,16 @@ amqp.connect(conString, function (error0, connection) {
   });
 });
 
-app.listen(PORT, () => {
-  "HTTPSERV listening on port", PORT;
-});
-
 app.get("/", (req, res) => {
-  const fileContent = fs.readFileSync("./file.txt", {
-    encoding: "utf-8",
-    flag: "r",
-  });
+  const fileContent = readFile(FILE);
   console.log(fileContent);
   res.send(fileContent);
+});
+
+app.get("/messages", (req, res) => {
+  res.json(readFile(MESSAGES_FILE));
+});
+
+module.exports = app.listen(PORT, () => {
+  "HTTPSERV listening on port", PORT;
 });
