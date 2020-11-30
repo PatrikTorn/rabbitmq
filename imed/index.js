@@ -2,7 +2,7 @@ const amqp = require("amqplib/callback_api");
 const TIMEOUT_MS = 1000;
 const ORIG_TOPIC = "my.o";
 const TOPIC = "my.i";
-const conString = "amqp://guest:guest@rabbitmq:5672";
+const conString = "amqp://localhost" || "amqp://guest:guest@rabbitmq:5672";
 
 amqp.connect(conString, function (error0, connection) {
   if (error0) {

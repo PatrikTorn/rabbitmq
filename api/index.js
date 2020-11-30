@@ -16,6 +16,7 @@ const STATES = {
 };
 
 let state = STATES.RUNNING;
+const logs = [];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -44,6 +45,12 @@ app.get("/state", (req, res) => {
   res.send(state);
 });
 
+app.get("/run-log", (req, res) => {
+  res.send(
+    logs.map((log) => `${log.time.toISOString()}: ${log.state}`).join("\n")
+  );
+});
+
 function switchState(newState) {
   switch (newState) {
     case STATES.RUNNING:
@@ -65,6 +72,7 @@ function switchState(newState) {
   }
   console.log(`[x] API Sent ${newState}`);
 }
+
 module.exports = app.listen(PORT, () => {
   console.log("App listening on port", PORT);
 });
