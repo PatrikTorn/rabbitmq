@@ -54,6 +54,15 @@ cd api && npm install && npm start
 $ curl localhost:8080
 ```
 
+## Testing the app
+``` 
+GET localhost:8080/	        Gets the newest message from queue
+GET localhost:8081/messages	Gets all messages since the startup
+GET localhost:8081/state	Gets the state of application
+PUT localhost:8081/state    (body {payload: RUNNING|PAUSED|INIT|SHUTDOWN})	Sets the state of application
+GET localhost:8081/run-log	Gets the logs of states set in interface above
+```
+
 ## Learnings
 
 I have worked in software development positions for more than half a decade, and I have not yet set up so far, a single pipelineä. This course assignment was very reward-ing for me, even though the work was complex. The level of difficulty of the task in the amount of code was not so much a problem, but mainly learning something new and understanding and applying it. I learned the new AMQP protocol at work because I used the RabbitMQ message breaker to communicate between different servers. In addition, I learned how to use the Docker and Docker-compose tools. I see that in many cases a project is good to implement with a virtual machine if its complexity and package dependencies start to escape. I learned to use Test-driven development for the first time, where tests were performed before the code itself. I did not see this ap-proach very useful for myself, because I'm used to carry out the tests always in arrears. In addition, perhaps most importantly, I learned CI / CD pipeline construction for a ver-sion control service. This is definitely the most important contribution of this exercise work, which I also spent considerably the most time on. I believe that these lessons brought by the course will give me many more skills in my future working life as well.
