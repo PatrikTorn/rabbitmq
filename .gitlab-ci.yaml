@@ -4,9 +4,10 @@ stages:
 build:
     stage: build
     script:
-        - echo "Building 2"
+        - docker-compose up --build
 
 test:
     stage: test
     script:
-        - echo "Testing2"
+        - npm install
+        - npm run test
