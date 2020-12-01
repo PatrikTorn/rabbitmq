@@ -2,9 +2,9 @@
 
 ## About the application
 
-Application is created with node.js using RabbitMQ's amqp message breaker -library. The application consists of four different services: HTTPSERV, ORSERVER, INTERMED and ORIG. HTTPSERV and OBSERER are located in same folder.
+Application is created with node.js using RabbitMQ's amqp message breaker -library. The application consists of four different services: HTTPSERV, ORSERVER, INTERMED, API and ORIG. HTTPSERV and OBSERER are located in same folder.
 
-The idea is that ORIG sends messages every third seconds to first queue. OBSERVER and INTERMED receives the messages from ORIG. INTERMED sends another message with different topic to OBSERVER. Observer dispatches the messages to the HTTPSERV's file.txt. When user requests the HTTPSERV's url (localhost:8080), the output of the newest message, time and topic will be displayed. 
+The idea is that ORIG sends messages every third seconds to first queue. OBSERVER and INTERMED receives the messages from ORIG. INTERMED sends another message with different topic to OBSERVER. Observer dispatches the messages to the HTTPSERV's file.txt. When user requests the HTTPSERV's url (localhost:8080), the output of the newest message, time and topic will be displayed. API is located in url localhost:80081. 
 
 ### About Dockerization
 
@@ -56,6 +56,4 @@ $ curl localhost:8080
 
 ## Learnings
 
-I have used RabbitMQ twice before. First time I used message breaker in my first software job. The case was error reporting, when the application crashed, the RabbitMQ sent the errors to the log. The second time was in school at Web Architectures course. There I realized the first time, how message breakers actually works. I am amazed, how functional and well implemented the protocol really is. I figured out that RabbitMQ is much faster and more reliable in many cases than just plain HTTP. I have been doing Web sockets in many projects, i found a lot similarity in AMQP protocol with Websockets.
-
-After this job, I have deepen my learnings especially with using Docker and Docker-compose. Working with RabbitMQ gave me good new tips to the future!
+I have worked in software development positions for more than half a decade, and I have not yet set up so far, a single pipelineä. This course assignment was very reward-ing for me, even though the work was complex. The level of difficulty of the task in the amount of code was not so much a problem, but mainly learning something new and understanding and applying it. I learned the new AMQP protocol at work because I used the RabbitMQ message breaker to communicate between different servers. In addition, I learned how to use the Docker and Docker-compose tools. I see that in many cases a project is good to implement with a virtual machine if its complexity and package dependencies start to escape. I learned to use Test-driven development for the first time, where tests were performed before the code itself. I did not see this ap-proach very useful for myself, because I'm used to carry out the tests always in arrears. In addition, perhaps most importantly, I learned CI / CD pipeline construction for a ver-sion control service. This is definitely the most important contribution of this exercise work, which I also spent considerably the most time on. I believe that these lessons brought by the course will give me many more skills in my future working life as well.
