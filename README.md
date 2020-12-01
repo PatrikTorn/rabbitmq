@@ -49,6 +49,7 @@ Run the following scripts to start each server:
 cd httpserv && npm install && npm start
 cd imed && npm install && npm start
 cd orig && npm install && npm start
+cd api && npm install && npm start
 (Wait for at most 30 seconds...)
 $ curl localhost:8080
 ```

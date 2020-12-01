@@ -5,7 +5,7 @@ require("../imed/index.js");
 const api = require("../api/index.js");
 
 describe("api logs tests", () => {
-  it("Gets logs after putting status", (done) => {
+  it("Gets logs after putting the status", (done) => {
     setTimeout(() => {
       request(api)
         .get("/run-log")
