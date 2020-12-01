@@ -4,6 +4,13 @@ const TOPIC = "my.o";
 const STATE_TOPIC = "my.s";
 const conString = "amqp://guest:guest@rabbitmq:5672";
 
+const STATES = {
+  PAUSED: "PAUSED",
+  RUNNING: "RUNNING",
+  INIT: "INIT",
+  SHUTDOWN: "SHUTDOWN",
+};
+
 let running = true;
 
 module.exports = amqp.connect(conString, function (error0, connection) {
@@ -38,10 +45,15 @@ module.exports = amqp.connect(conString, function (error0, connection) {
           STATE_TOPIC
         );
         const isRunning = msg.content.toString();
-        if (isRunning === "true") {
-          running = true;
-        } else {
-          running = false;
+        switch (isRunning) {
+          case STATES.RUNNING:
+          case STATES.INIT:
+            running = true;
+            break;
+          case STATES.PAUSED:
+          case STATES.SHUTDOWN:
+            running = false;
+            break;
         }
       },
       { noAck: true }

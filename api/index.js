@@ -52,24 +52,12 @@ app.get("/run-log", (req, res) => {
 });
 
 function switchState(newState) {
-  switch (newState) {
-    case STATES.RUNNING:
-      amqp.connect(conString, function (error0, connection) {
-        if (error0) throw error0;
-        connection.createChannel(function (error1, channel) {
-          channel.sendToQueue(STATE_TOPIC, Buffer.from("true"));
-        });
-      });
-      break;
-    case STATES.PAUSED:
-      amqp.connect(conString, function (error0, connection) {
-        if (error0) throw error0;
-        connection.createChannel(function (error1, channel) {
-          channel.sendToQueue(STATE_TOPIC, Buffer.from("false"));
-        });
-      });
-      break;
-  }
+  amqp.connect(conString, function (error0, connection) {
+    if (error0) throw error0;
+    connection.createChannel(function (error1, channel) {
+      channel.sendToQueue(STATE_TOPIC, Buffer.from(newState));
+    });
+  });
   console.log(`[x] API Sent ${newState}`);
 }
 
